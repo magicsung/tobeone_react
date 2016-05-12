@@ -1,0 +1,37 @@
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  @include border-radius(50px);
+}
+.thumbnail-small {
+  width: 50px;
+  height: 50px;
+  @include border-radius(25px);
+}
+.thumbnail-tiny {
+  width: 40px;
+  height: 40px;
+  @include border-radius(20px);
+}
+
+.avatar {
+  .description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+.avatar-category {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: $brand-primary;
+  height: 30px;
+  width: 30px;
+  @include border-radius(15px);
+  color: $white;
+  line-height: 2.8em;
+  font-size: .8em;
+  text-align: center;
+}

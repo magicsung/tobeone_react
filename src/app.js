@@ -5,6 +5,7 @@ var Empty = require('./views/empty.jsx');
 var Notfound = require('./views/notFound.jsx');
 var IndexContent = require('./views/indexContent.jsx');
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
+require('./css/main.scss');
 
 ReactDOM.render(
   (

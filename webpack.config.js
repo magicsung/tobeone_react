@@ -1,14 +1,16 @@
 var path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  devtool: 'cheap-module-source-map',
   context: __dirname + "/src",
   entry: {
     javascript: "./app.js",
-    html: "./index.html",
+    // html: "./index.html"
   },
   output: {
-    filename: "app.js",
-    path: __dirname + "/dist"
+    path: __dirname + "/dist",
+    filename: "app.js"
   },
   module: {
     loaders: [
@@ -24,6 +26,14 @@ module.exports = {
       {
         test: /\.html$/,
         loader: "file?name=[name].[ext]",
+      },
+      {
+        test: /\.css$/,
+        loader: "style!css"
+      },
+      {
+        test: /\.scss$/,
+        loader: "style!css!sass"
       }
     ]
   }
