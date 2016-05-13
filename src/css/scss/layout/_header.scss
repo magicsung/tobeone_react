@@ -12,9 +12,6 @@ header {
       height: 30px;
     }
   };
-  .active .btn {
-    background-color: $brand-primary-darker;
-  }
 }
 
 .xs-fixed-header {
@@ -28,6 +25,7 @@ header {
 }
 
 #sidebar {
+  @include animation-name(slideInLeft);
   @include bp(xs) {
     position: fixed;
     width: 100%;
@@ -86,4 +84,16 @@ header {
       }
     }
   }
+}
+
+input#toggle-menu:checked ~ div #sidebar {
+  @include bp(xs) {
+    @include animation-name(slideOutLeft);
+  };
+}
+#xs-menu-action {
+  background-color: $brand-primary-darker;
+}
+input#toggle-menu:checked ~ header #xs-menu-action {
+  background-color: inherit;
 }

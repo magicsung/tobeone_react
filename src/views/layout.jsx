@@ -7,6 +7,7 @@ var Layout = React.createClass ({
     return (
       <div className="h100">
         <div id="main-content">
+          <input type="checkbox" className="hidden" id="toggle-menu" defaultChecked />
           <Header />
           <div className="container-fluid mt-15 mb-15 header-height">
             {this.props.children}

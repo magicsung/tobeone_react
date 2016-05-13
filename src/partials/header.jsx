@@ -56,11 +56,9 @@ var MobileHeader = React.createClass({
             <i className="material-icons color-white fz-2em">&#xE8B6;</i>
           </button>
         </a>
-        <a href="#menu" className="xs-menu" id="xs-menu-action" alt="">
-          <button className="btn btn-gray height-45 bg-opacity hover-none" type="button">
-            <i className="material-icons color-white fz-2em">&#xE5D2;</i>
-          </button>
-        </a>
+        <label htmlFor="toggle-menu" className="btn btn-gray height-45 bg-opacity hover-none" id="xs-menu-action">
+          <i className="material-icons color-white fz-2em">&#xE5D2;</i>
+        </label>
       </div>
     );
   }

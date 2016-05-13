@@ -6,7 +6,8 @@ module.exports = {
   context: __dirname + "/src",
   entry: {
     javascript: "./app.js",
-    // html: "./index.html"
+    // production remove html output
+    html: "./index.html"
   },
   output: {
     path: __dirname + "/dist",

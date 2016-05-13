@@ -12,10 +12,9 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Layout}>
       <IndexRoute component={IndexContent} />
-      <Route path="empty" component={Empty}/>
+      <Route path="empty" component={Empty} />
     </Route>
-    <Route path="*" component={Notfound}/>
+    <Route path="*" component={Notfound} />
   </Router>
-  ),
-  document.getElementById('page-content')
+  ),document.getElementById('page-content')
 );
