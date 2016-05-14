@@ -6,9 +6,11 @@ html, body {
   color: $gray;
 }
 html.noscroll {
+  @include bp(xs) {
     position: fixed;
     overflow-y: scroll;
     width: 100%;
+  };
 }
 #main-content {
   min-height: 100%;

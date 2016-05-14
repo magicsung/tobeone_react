@@ -3,7 +3,7 @@ var React = require('react');
 var SideBar = React.createClass({
   render: function() {
     return (
-      <div id="sidebar" className="col-sm-4 col-md-3 xs-pd-0 animated">
+      <div id="sidebar" className="col-sm-4 col-md-3 xs-pd-0 xs-pb-45 animated">
         <div className="bg-white pd-40 radius-5 xs-radius-0 sidebar-wrap">
 
           <div className="avatar">

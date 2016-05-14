@@ -1,4 +1,5 @@
 var React = require('react');
+var $ = require('jquery');
 
 var Header = React.createClass({
   render: function() {
@@ -6,7 +7,7 @@ var Header = React.createClass({
       <header className="bg-primary-dark xs-fixed-header">
         <div className="container-fluid">
           <div className="row">
-            
+
             <BrandImage />
             <SearchBox />
             <MobileHeader />
@@ -48,6 +49,9 @@ var SearchBox = React.createClass({
   }
 });
 var MobileHeader = React.createClass({
+  handleClick: function() {
+    $('html').toggleClass("noscroll");
+  },
   render: function() {
     return (
       <div className="display-xs pull-right">
@@ -56,7 +60,10 @@ var MobileHeader = React.createClass({
             <i className="material-icons color-white fz-2em">&#xE8B6;</i>
           </button>
         </a>
-        <label htmlFor="toggle-menu" className="btn btn-gray height-45 bg-opacity hover-none" id="xs-menu-action">
+        <label id="xs-menu-action"
+               htmlFor="toggle-menu"
+               className="btn btn-gray height-45 bg-opacity hover-none"
+               onClick={this.handleClick}>
           <i className="material-icons color-white fz-2em">&#xE5D2;</i>
         </label>
       </div>
