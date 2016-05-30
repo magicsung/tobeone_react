@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import PostContent from '../partials/postContent.jsx';
 import Comment from '../partials/comment.jsx';
 
@@ -23,8 +24,8 @@ class Post extends Component {
       <div className="content bg-white radius-5 mt-15 xs-radius-0">
         <PostContent {...this.props} />
         <div className="bg-white clearfix radius-5">
-          <PostActions newCommentClick={this.newCommentClick} />
-          <PostComments {...this.props} newCommentClick={this.state.isNewCommentOpen} />
+          <PostActions newCommentClick={this.newCommentClick.bind(this)} />
+          <PostComments {...this.props} isNewCommentOpen={this.state.isNewCommentOpen} />
         </div>
       </div>
     );
@@ -44,7 +45,7 @@ class PostActions extends Component {
               </a>
             </li>
             <li className="ml-35">
-              <a onClick={this.props.newCommentClick} className="pointer" >
+              <a onClick={this.props.newCommentClick.bind(this)} className="pointer" >
                 <i className="material-icons relative top-3px mr-5 fz-1p2em">&#xE0B7;</i>
                 <span>留言</span>
               </a>
@@ -106,6 +107,14 @@ class PostComments extends Component {
 }
 
 class NewComment extends Component {
+  componentDidMount(){
+    ReactDOM.findDOMNode(this.refs.newComment).focus();
+  }
+
+  componentDidUpdate() {
+    ReactDOM.findDOMNode(this.refs.newComment).focus();
+  }
+
   render() {
     return (
       <div className="new-comments mt-15">
@@ -121,7 +130,7 @@ class NewComment extends Component {
         <div className="pull-left w100-65">
           <form action="index.html" method="post" className="mt-5 clearfix">
             <div className="w100 pull-left">
-              <input type="text" placeholder="留言......" className="form-control border radius-5 w100 height-40" />
+              <input type="text" ref="newComment" placeholder="留言......" className="form-control border radius-5 w100 height-40" />
             </div>
           </form>
         </div>

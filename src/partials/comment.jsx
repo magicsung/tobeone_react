@@ -88,6 +88,10 @@ class NewReply extends Component {
     ReactDOM.findDOMNode(this.refs.newReply).focus();
   }
 
+  componentDidUpdate() {
+    ReactDOM.findDOMNode(this.refs.newReply).focus();
+  }
+
   render() {
     return (
       <div className="reply-minor mt-10 clearfix">
