@@ -1,16 +1,18 @@
-var React = require('react');
-var SideBar = require('../partials/sidebar.jsx');
-var Wall = require('../partials/wall.jsx');
+import React, {Component} from 'react';
+import SideBar from '../partials/sidebar.jsx';
+import Wall from '../partials/wall.jsx';
 
-var IndexContent = React.createClass({
-  render: function() {
+class IndexContent extends Component {
+  render() {
     return (
       <div className="row">
-        <SideBar />
-        <Wall />
+        <SideBar noticeNumber={this.props.noticeNumber}
+                 currentUser={this.props.currentUser}/>
+        <Wall postList={this.props.postList}
+              currentUser={this.props.currentUser} />
       </div>
     );
   }
-});
+}
 
-module.exports = IndexContent;
+export default IndexContent;

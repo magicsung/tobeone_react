@@ -1,10 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Layout = require('./views/layout.jsx');
-var Empty = require('./views/empty.jsx');
-var Notfound = require('./views/notFound.jsx');
-var IndexContent = require('./views/indexContent.jsx');
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Layout from './views/layout.jsx';
+import Empty from './views/empty.jsx';
+import NotFound from './views/notFound.jsx';
+import IndexContent from './views/indexContent.jsx';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 require('./css/main.scss');
 
 ReactDOM.render(
@@ -14,7 +14,7 @@ ReactDOM.render(
       <IndexRoute component={IndexContent} />
       <Route path="empty" component={Empty} />
     </Route>
-    <Route path="*" component={Notfound} />
+    <Route path="*" component={NotFound} />
   </Router>
   ),document.getElementById('page-content')
 );

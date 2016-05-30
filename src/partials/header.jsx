@@ -1,8 +1,8 @@
-var React = require('react');
-var $ = require('jquery');
+import React, {Component} from 'react';
+import $ from 'jquery';
 
-var Header = React.createClass({
-  render: function() {
+class Header extends Component {
+  render() {
     return (
       <header className="bg-primary-dark xs-fixed-header">
         <div className="container-fluid">
@@ -11,16 +11,17 @@ var Header = React.createClass({
             <BrandImage />
             <SearchBox />
             <MobileHeader />
-            <MemberFeatures />
+            <MemberFeatures noticeNumber={this.props.noticeNumber} />
 
           </div>
         </div>
       </header>
     );
   }
-});
-var BrandImage = React.createClass({
-  render: function() {
+}
+
+class BrandImage extends Component {
+  render() {
     return (
       <div className="col-sm-4 col-xs-5 xs-pd-0 brand-logo ">
         <a href="/" className="ml-10 w100 block">
@@ -29,16 +30,17 @@ var BrandImage = React.createClass({
       </div>
     );
   }
-});
-var SearchBox = React.createClass({
-  render: function() {
+}
+
+class SearchBox extends Component {
+  render() {
     return (
       <div className="col-sm-4 xs-pd-0 clearfix hidden-xs" id="search">
         <form action="index.html" method="post" className="hidden-xs">
           <div className="row">
             <div className="col-sm-12">
               <div className="group">
-                <input type="text" name="search" value="" placeholder="請輸入關鍵字搜尋" className="form-control border-none pl-20 radius-20" />
+                <input type="text" name="search" value="" placeholder="請輸入關鍵字搜尋" className="form-control border-none pl-20 radius-20 height-40" />
                 <button className="inner-btn" type="submit"><i className="material-icons color-gray-light mt-5">&#xE8B6;</i></button>
               </div>
             </div>
@@ -47,14 +49,15 @@ var SearchBox = React.createClass({
       </div>
     );
   }
-});
-var MobileHeader = React.createClass({
-  handleClick: function() {
+}
+
+class MobileHeader extends Component {
+  handleClick() {
     $('html').toggleClass("noscroll");
-  },
-  render: function() {
+  }
+  render() {
     return (
-      <div className="display-xs pull-right">
+      <div className="display-xs-inline pull-right">
         <a href="#search" className="xs-search">
           <button className="btn btn-gray height-45 bg-opacity hover-none" type="button">
             <i className="material-icons color-white fz-2em">&#xE8B6;</i>
@@ -69,22 +72,23 @@ var MobileHeader = React.createClass({
       </div>
     );
   }
-});
-var MemberFeatures = React.createClass({
-  render: function() {
+}
+
+class MemberFeatures extends Component {
+  render() {
     return (
       <div className="col-sm-4 clearfix hidden-xs">
         <ul className="inline-block link-white fz-1p1em lh-2em pull-right">
           <li className="ml-20">
-            <a href="#" className="">
-              <i className="material-icons fix-icon">&#xE8A6;</i>
-              <span>會員專區</span>
+            <a href="/upload">
+              <i className="material-icons relative top-6px">&#xE2C3;</i>
+              <span>上傳</span>
             </a>
           </li>
           <li className="ml-20 hidden-xs relative notice">
-            <a href="#">
-              <i className="material-icons fix-icon">&#xE7F5;</i>
-              <span className="badge bg-white color-primary-dark icon-badge">9</span>
+            <a href="#" className="dropdown-toggle">
+              <i className="material-icons relative top-6px">&#xE7F5;</i>
+              <span className="badge bg-white color-primary-dark icon-badge">{this.props.noticeNumber}</span>
               <span className="ml-5">通知</span>
             </a>
           </li>
@@ -92,7 +96,6 @@ var MemberFeatures = React.createClass({
       </div>
     );
   }
-});
+}
 
-
-module.exports = Header;
+export default Header;

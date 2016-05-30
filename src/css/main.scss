@@ -22,7 +22,9 @@
 @import "scss/component/breadcrumbs";
 @import "scss/component/avatar";
 @import "scss/component/popover";
+@import "scss/component/popout";
 @import "scss/component/progress";
+@import "scss/component/notification";
 
 // custom
 @import "scss/custom/type";
@@ -30,5 +32,4 @@
 
 // layout
 @import "scss/layout/header";
-// @import "scss/footer";
-@import "scss/layout/index";
+@import "scss/layout/landing";

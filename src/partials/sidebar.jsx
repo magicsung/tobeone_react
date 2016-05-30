@@ -1,83 +1,93 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var SideBar = React.createClass({
-  render: function() {
+class SideBar extends Component {
+  render() {
     return (
       <div id="sidebar" className="col-sm-4 col-md-3 xs-pd-0 xs-pb-45 animated">
-        <div className="bg-white pd-40 radius-5 xs-radius-0 sidebar-wrap">
+        <div className="bg-white pd-40 radius-5 xs-radius-0  xs-mb-45 sidebar-wrap">
 
-          <div className="avatar">
-            <div className="relative">
-              <a href="#member" className="">
-                <img src="http://dummyimage.com/100x100/cccccc/fff&text=avatar" alt="" className="thumbnail-small" />
-              </a>
-              <span className="fz-1p5em ml-15">name</span>
-            </div>
-          </div>
-
-          <div className="personal-function mt-20">
-            <ul className="link-red ml-30 xs-list">
-              <li className="display-xs-block bg-light">
-                <a href="#" className="mt-5">
-                  個人專區
-                </a>
-              </li>
-              <li className="display-xs-block notice">
-                <a href="#" className="mt-5">
-                  <span>通知</span>
-                  <span className="badge bg-primary-dark pull-right">9</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="mt-5">
-                  <i className="material-icons fix-icon hidden-xs">&#xE307;</i>
-                  <span>我的訂閱</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="mt-5">
-                  <i className="material-icons fix-icon hidden-xs">&#xE63A;</i>
-                  <span>我的影音</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="mt-5">
-                  <i className="material-icons fix-icon hidden-xs">&#xE639;</i>
-                  <span>我的直播</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="mt-5">
-                  <i className="material-icons fix-icon hidden-xs">&#xE0CB;</i>
-                  <span>悄悄話</span>
-                </a>
-              </li>
-              <li className="display-xs-block">
-                <a href="#" className="mt-5">
-                  <span>我的最新關注</span>
-                </a>
-              </li>
-              <li className="display-xs-block">
-                <a href="#" className="mt-5">
-                  <span>我的人氣關注</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="category mt-30">
-            <CategoryButton />
-          </div>
+          <SideBarAvatar currentUser={this.props.currentUser} />
+                       <PersonalFunction noticeNumber={this.props.noticeNumber} />
+          <CategoryButton />
 
         </div>
 
       </div>
     );
   }
-});
+}
+class PersonalFunction extends Component {
+  render() {
+    return (
+      <div className="personal-function mt-20">
+        <ul className="link-red ml-30 xs-list">
+          <li className="display-xs-block bg-light">
+            <a href="#" className="mt-5">
+              個人專區
+            </a>
+          </li>
+          <li className="display-xs-block notice">
+            <a href="#" className="mt-5">
+              <span>通知</span>
+              <span className="badge bg-primary-dark pull-right">{this.props.noticeNumber}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" className="mt-5">
+              <i className="material-icons relative top-7px mr-5 hidden-xs">&#xE307;</i>
+              <span>我的訂閱</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" className="mt-5">
+              <i className="material-icons relative top-7px mr-5 hidden-xs">&#xE63A;</i>
+              <span>我的影音</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" className="mt-5">
+              <i className="material-icons relative top-7px mr-5 hidden-xs">&#xE639;</i>
+              <span>我的直播</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" className="mt-5">
+              <i className="material-icons relative top-7px mr-5 hidden-xs">&#xE0CB;</i>
+              <span>悄悄話</span>
+            </a>
+          </li>
+          <li className="display-xs-block">
+            <a href="#" className="mt-5">
+              <span>我的最新關注</span>
+            </a>
+          </li>
+          <li className="display-xs-block">
+            <a href="#" className="mt-5">
+              <span>我的人氣關注</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+}
+class SideBarAvatar extends Component {
+  render() {
+    return (
+      <div className="avatar">
+        <div className="relative">
+          <a href="#member" className="">
+            <img src={this.props.currentUser.avatar} alt="" className="thumbnail-tiny" />
+            <span className="fz-1p1em ml-5">{this.props.currentUser.name}</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
+}
 
-var CategoryButton = React.createClass({
-  render: function() {
+class CategoryButton extends Component {
+  render() {
     var categoryButtons = [
       {id: 2, name: "線上直播", link: "#c1"},
       {id: 3, name: "最新", link: "#c2"},
@@ -89,40 +99,42 @@ var CategoryButton = React.createClass({
       {id: 9, name: "愛車", link: "#c8"}
     ];
     return (
-      <ul className="text-center xs-mb-40 xs-list">
-        <li className="display-xs-block bg-light">
-          <a href="#" className="mt-5">
-            分類
-          </a>
-        </li>
-        <li className="mt-15 popover popover-sticky hidden-xs">
-          <a href="#" className="form-control hover-red radius-20 lh-1p5em fz-1p1em active">
-            我的關注
-          </a>
-          <ul>
-            <li><a href="#">最新關注</a></li>
-            <li><a href="#">人氣關注</a></li>
-          </ul>
-        </li>
+      <div className="category mt-30">
+        <ul className="text-center xs-mb-40 xs-list">
+          <li className="display-xs-block bg-light">
+            <a href="#" className="mt-5">
+              分類
+            </a>
+          </li>
+          <li className="mt-15 popover popover-sticky hidden-xs">
+            <a href="#" className="form-control hover-red radius-20 lh-1p5em fz-1p1em height-40 active">
+              我的關注
+            </a>
+            <ul>
+              <li><a href="#">最新關注</a></li>
+              <li><a href="#">人氣關注</a></li>
+            </ul>
+          </li>
 
-        {categoryButtons.map(function(category){
-          return <CategoryButtomGruop key={category.id} data={category} />;
-        })}
+          {categoryButtons.map(function(category){
+            return <CategoryButtomGruop key={category.id} data={category} />;
+          })}
 
-      </ul>
+        </ul>
+      </div>
     );
   }
-});
-var CategoryButtomGruop = React.createClass({
-  render: function() {
+}
+class CategoryButtomGruop extends Component {
+  render() {
     return (
       <li className="mt-15">
-        <a href={this.props.data.link} className="form-control hover-red radius-20 lh-1p5em fz-1p1em">
+        <a href={this.props.data.link} className="form-control hover-red radius-20 lh-1p5em fz-1p1em height-40">
           {this.props.data.name}
         </a>
       </li>
     );
   }
-});
+}
 
-module.exports = SideBar;
+export default SideBar;

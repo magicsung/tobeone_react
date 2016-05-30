@@ -13,7 +13,7 @@ var NewPost = React.createClass({
             <div className="avatar">
               <div className="relative">
                 <a href="#member" className="">
-                  <img src="http://dummyimage.com/100x100/cccccc/fff&text=avatar" alt="" className="thumbnail-small" />
+                  <img src={this.props.currentUser.avatar} alt="" className="thumbnail-small" />
                 </a>
               </div>
             </div>
@@ -23,7 +23,7 @@ var NewPost = React.createClass({
               <div className="col-xs-12">
                 <a href="/upload">
                   <button type="submit" name="button" className="btn btn-red radius-5 width-300 xs-w100">
-                    <i className="material-icons fix-icon-3px fz-1p5em">&#xE54D;</i>
+                    <i className="material-icons relative top-3px fz-1p5em">&#xE2C3;</i>
                     <span className="" style={iconStyle}>
                       上傳影片
                     </span>
