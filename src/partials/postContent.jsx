@@ -1,7 +1,26 @@
 import React, {Component} from 'react';
 
 class Post extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isReportOpen: false
+    };
+  };
+
+  reportClick(event) {
+    event.preventDefault();
+    this.setState({
+      isReportOpen: !this.state.isReportOpen
+    })
+  }
+
   render() {
+    let reportMenu;
+    if (this.state.isReportOpen) {
+       reportMenu = <ReportMenu />;
+    }
     return (
       <div className="border-bottom-gray-1px pd-20">
         <div className="row">
@@ -15,17 +34,10 @@ class Post extends Component {
             </div>
             <div className="pull-left w100-65">
               <div className="inline-block pull-right relative">
-                <a href="#" className="radius-5 ml-15 dropdown-toggle">
+                <a href="#" className="radius-5 ml-15" onClick={this.reportClick.bind(this)}>
                   <i className="material-icons">&#xE313;</i>
                 </a>
-                <ul className="dropdown-menu pt-10 radius-5">
-                  <li className="ml-15 mb-5">檢舉這部影片：</li>
-                  <li><a href="#">檢舉原因1</a></li>
-                  <li><a href="#">檢舉原因2</a></li>
-                  <li><a href="#">檢舉原因3</a></li>
-                  <li><a href="#">檢舉原因4</a></li>
-                  <li><a href="#">檢舉原因5</a></li>
-                </ul>
+                { reportMenu }
               </div>
               <a href="#" className="btn btn-xs btn-gray-light radius-5 pull-right">關注中</a>
               <div className="name fz-1p4em link-red">
@@ -52,6 +64,21 @@ class Post extends Component {
           </div>
         </div>
       </div>
+    );
+  }
+}
+
+class ReportMenu extends Component {
+  render() {
+    return (
+      <ul className="dropdown-menu show pt-10 radius-5">
+        <li className="ml-15 mb-5">檢舉這部影片：</li>
+        <li><a href="#">檢舉原因1</a></li>
+        <li><a href="#">檢舉原因2</a></li>
+        <li><a href="#">檢舉原因3</a></li>
+        <li><a href="#">檢舉原因4</a></li>
+        <li><a href="#">檢舉原因5</a></li>
+      </ul>
     );
   }
 }

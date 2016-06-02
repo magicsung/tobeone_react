@@ -10,7 +10,8 @@ class Comment extends Component {
     };
   };
 
-  newReplyClick() {
+  newReplyClick(event) {
+    event.preventDefault();
     this.setState({
       isNewReplyOpen: true
     })

@@ -13,10 +13,16 @@ class Post extends Component {
     };
   };
 
-  newCommentClick() {
+  newCommentClick(event) {
+    event.preventDefault();
     this.setState({
       isNewCommentOpen: true
     })
+  }
+
+  likeClick(event) {
+    event.preventDefault();
+    // like click action
   }
 
   render() {
@@ -24,7 +30,8 @@ class Post extends Component {
       <div className="content bg-white radius-5 mt-15 xs-radius-0">
         <PostContent {...this.props} />
         <div className="bg-white clearfix radius-5">
-          <PostActions newCommentClick={this.newCommentClick.bind(this)} />
+          <PostActions newCommentClick={this.newCommentClick.bind(this)}
+                       likeClick={this.likeClick.bind(this)} />
           <PostComments {...this.props} isNewCommentOpen={this.state.isNewCommentOpen} />
         </div>
       </div>
@@ -33,13 +40,32 @@ class Post extends Component {
 }
 
 class PostActions extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isShareOpen: false
+    };
+  };
+
+  shareMenuClick(event) {
+    event.preventDefault();
+    this.setState({
+      isShareOpen: !this.state.isShareOpen
+    })
+  }
+
   render() {
+    let shareMenu;
+    if (this.state.isShareOpen) {
+      shareMenu = <ShareMenu />;
+    }
     return (
       <div className="post-action col-xs-12 pd-10 border-bottom-gray-1px clearfix pd-10">
         <div className="social-action">
           <ul className="inline-block pd-lr-10">
             <li className="">
-              <a href="#">
+              <a href="#" onClick={this.props.likeClick.bind(this)}>
                 <i className="material-icons relative top-3px mr-5 fz-1p2em">&#xE87E;</i>
                 <span>喜歡</span>
               </a>
@@ -51,18 +77,26 @@ class PostActions extends Component {
               </a>
             </li>
             <li className="ml-35 share-link relative">
-              <a href="#" className="dropdown-toggle">
+              <a href="#" onClick={this.shareMenuClick.bind(this)}>
                 <i className="material-icons relative top-3px mr-5 fz-1p2em">&#xE80D;</i>
                 <span>分享</span>
               </a>
-              <ul className="dropdown-menu radius-5">
-                <li><a href="#">分享到 Facebook</a></li>
-                <li><a href="#">分享到 Weibo</a></li>
-              </ul>
+              { shareMenu }
             </li>
           </ul>
         </div>
       </div>
+    );
+  }
+}
+
+class ShareMenu extends Component {
+  render() {
+    return (
+      <ul className="dropdown-menu show radius-5">
+        <li><a href="#">分享到 Facebook</a></li>
+        <li><a href="#">分享到 Weibo</a></li>
+      </ul>
     );
   }
 }
