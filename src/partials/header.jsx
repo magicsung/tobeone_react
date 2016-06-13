@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import $ from 'jquery';
 
 class Header extends Component {
@@ -8,10 +9,10 @@ class Header extends Component {
         <div className="container-fluid">
           <div className="row">
 
-            <BrandImage />
-            <SearchBox />
-            <MobileHeader />
-            <MemberFeatures noticeNumber={this.props.noticeNumber} />
+            <BrandImage/>
+            <SearchBox/>
+            <MobileHeader/>
+            <MemberFeatures noticeNumber={this.props.noticeNumber}/>
 
           </div>
         </div>
@@ -25,7 +26,7 @@ class BrandImage extends Component {
     return (
       <div className="col-sm-4 col-xs-5 xs-pd-0 brand-logo ">
         <a href="/" className="ml-10 w100 block">
-          <img src="/images/2be1_logo_white.svg" className="height-40" alt="" />
+          <img src="/images/2be1_logo_white.svg" className="height-40" alt=""/>
         </a>
       </div>
     );
@@ -40,8 +41,10 @@ class SearchBox extends Component {
           <div className="row">
             <div className="col-sm-12">
               <div className="group">
-                <input type="text" name="search" value="" placeholder="請輸入關鍵字搜尋" className="form-control border-none pl-20 radius-20 height-40" />
-                <button className="inner-btn" type="submit"><i className="material-icons color-gray-light mt-5">&#xE8B6;</i></button>
+                <input type="text" name="search" value="" placeholder="請輸入關鍵字搜尋" className="form-control border-none pl-20 radius-20 height-40"/>
+                <button className="inner-btn" type="submit">
+                  <i className="material-icons color-gray-light mt-5">&#xE8B6;</i>
+                </button>
               </div>
             </div>
           </div>
@@ -63,10 +66,7 @@ class MobileHeader extends Component {
             <i className="material-icons color-white fz-2em">&#xE8B6;</i>
           </button>
         </a>
-        <label id="xs-menu-action"
-               htmlFor="toggle-menu"
-               className="btn btn-gray height-45 bg-opacity hover-none"
-               onClick={this.handleClick}>
+        <label id="xs-menu-action" htmlFor="toggle-menu" className="btn btn-gray height-45 bg-opacity hover-none" onClick={this.handleClick}>
           <i className="material-icons color-white fz-2em">&#xE5D2;</i>
         </label>
       </div>
@@ -81,16 +81,22 @@ class MemberFeatures extends Component {
         <ul className="inline-block link-white fz-1p1em lh-2em pull-right">
           <li className="ml-20">
             <a href="/upload">
-              <i className="material-icons relative top-6px">&#xE2C3;</i>
+              <i className="material-icons relative top-6px mr-5">&#xE2C3;</i>
               <span>上傳</span>
             </a>
           </li>
-          <li className="ml-20 hidden-xs relative notice">
+          <li className="ml-10 relative notice">
             <a href="#" className="dropdown-toggle">
-              <i className="material-icons relative top-6px">&#xE7F5;</i>
+              <i className="material-icons relative top-6px mr-5">&#xE7F5;</i>
               <span className="badge bg-white color-primary-dark icon-badge">{this.props.noticeNumber}</span>
               <span className="ml-5">通知</span>
             </a>
+          </li>
+          <li className="ml-10 relative login">
+            <Link to='/user/login' className="dropdown-toggle">
+              <i className="material-icons relative top-6px mr-5">&#xE7FD;</i>
+              <span>登入</span>
+            </Link>
           </li>
         </ul>
       </div>
