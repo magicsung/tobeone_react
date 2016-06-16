@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import SideBar            from '../partials/sidebar.jsx';
-import Wall               from '../partials/wall.jsx';
+import { Link } from 'react-router';
 
 class Login extends Component {
   constructor(props){
     super();
 
     this.state = {
-      email: 'jacksung@gmail.com',
-      password: '1234'
+      email: '',
+      password: ''
     }
   }
   handleLoginSubmit(event) {
@@ -48,7 +47,8 @@ class Login extends Component {
             </div>
             { showErrorMessage }
             <div className="text-center mt-35">
-              <a href="/register" className="hover-red">會員註冊</a> ｜ <a href="/forgot-pwd" className="hover-red">忘記密碼</a>
+              <Link to="/user/register" className="hover-red">會員註冊</Link> ｜
+              <Link to="/user/forgot-pwd" className="hover-red">忘記密碼</Link>
             </div>
           </div>
         </div>

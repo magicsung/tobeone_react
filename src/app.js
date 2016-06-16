@@ -10,6 +10,7 @@ import AuthLayout           from './views/authLayout.jsx';
 import NotFound             from './views/notFound.jsx';
 import IndexContent         from './views/indexContent.jsx';
 import Login                from './views/login.jsx';
+import Register             from './views/register.jsx';
 
 require('./css/main.scss');
 
@@ -25,6 +26,7 @@ ReactDOM.render(
         </Route>
         <Route path="/user" component={AuthLayout}>
           <Route path="login" component={Login} />
+          <Route path="register" component={Register} />
         </Route>
         <Route path="*" component={NotFound} />
       </Router>

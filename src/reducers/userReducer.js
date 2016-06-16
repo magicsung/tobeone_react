@@ -5,6 +5,11 @@ const initialState = {
     showError: false,
     errorMessage: ''
   },
+  register: {
+    isAuthenticating: false,
+    showError: false,
+    errorMessage: ''
+  },
   currentUser: {
     avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=nologin',
     name: null,
@@ -44,7 +49,7 @@ export function userReducer(state = initialState, action){
           errorMessage: null
         },
         currentUser: {
-          avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=AVATAR',
+          avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=' + action.username,
           name: action.username,
           token: action.token
         }
@@ -59,6 +64,39 @@ export function userReducer(state = initialState, action){
           avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=nologin',
           name: null,
           token: null
+        }
+      });
+    case 'REGISTER_CHECK_INFO_FAILURE':
+      return Object.assign({}, state, {
+        register: {
+          showError: true,
+          errorMessage: action.errorMessage
+        }
+      });
+    case 'USER_REGISTER_REQUEST':
+      return Object.assign({}, state, {
+        register: {
+          isAuthenticating: true
+        }
+      });
+    case 'USER_REGISTER_FAILURE':
+      return Object.assign({}, state, {
+        register: {
+          isAuthenticating: false,
+          showError: true,
+          errorMessage: action.errorMessage
+        }
+      });
+    case 'USER_REGISTER_SUCCESS':
+      return Object.assign({}, state, {
+        login: {
+          showError: true,
+          errorMessage: 'Register success, please login with your eamil and password.'
+        },
+        register: {
+          isAuthenticating: false,
+          showError: true,
+          errorMessage: null
         }
       });
     default:

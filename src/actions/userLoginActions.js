@@ -4,7 +4,6 @@ import jwtDecode from 'jwt-decode';
 
 export function userLogin(loginInfo) {
   return function(dispatch) {
-    // let resInfo = {};
     if (loginInfo.email == "") {
       dispatch(checkInfoFailure('Please enter email.'));
     } else if (loginInfo.password == "") {
@@ -63,6 +62,7 @@ export function userLoginSuccess(data) {
 
 export function userLogout() {
   localStorage.removeItem('token');
+  browserHistory.push('/user/login')
   return {
     type: 'USER_LOGOUT'
   }

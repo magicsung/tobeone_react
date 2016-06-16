@@ -2,11 +2,16 @@ import React, {Component}     from 'react';
 import { Link }               from 'react-router';
 import { connect }            from 'react-redux';
 import { userLogin }          from '../actions/userLoginActions';
+import { userRegister }       from '../actions/userRegisterActions';
 
 class AuthLayout extends Component {
   handleLoginSubmit(loginInfo) {
     const { dispatch } = this.props;
     dispatch(userLogin(loginInfo));
+  }
+  handleRegisterSubmit(registerInfo) {
+    const { dispatch } = this.props;
+    dispatch(userRegister(registerInfo));
   }
   render(){
     return (
@@ -20,7 +25,8 @@ class AuthLayout extends Component {
           <div className="container-fluid mt-15 mb-15 header-height">
             {this.props.children && React.cloneElement(this.props.children, {
              user: this.props.user,
-             handleLoginSubmit: this.handleLoginSubmit.bind(this)
+             handleLoginSubmit: this.handleLoginSubmit.bind(this),
+             handleRegisterSubmit: this.handleRegisterSubmit.bind(this)
             })}
             <div className="text-center">
               <p className="color-gray-light">© 2016. All rights reserved. ToBeOne Co.,Ltd.</p>
