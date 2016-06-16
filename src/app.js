@@ -1,26 +1,35 @@
-import React        from 'react';
-import ReactDOM     from 'react-dom';
-
-import Layout       from './views/layout.jsx';
-import AuthLayout   from './views/authLayout.jsx';
-import Empty        from './views/empty.jsx';
-import NotFound     from './views/notFound.jsx';
-import IndexContent from './views/indexContent.jsx';
-import Login        from './views/login.jsx';
+import React                from 'react';
+import ReactDOM             from 'react-dom';
+import { Provider }         from 'react-redux';
+import { createStore, applyMiddleware }  from 'redux';
+import thunk                from 'redux-thunk';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
+import reducers             from './reducers';
+import Layout               from './views/layout.jsx';
+import AuthLayout           from './views/authLayout.jsx';
+import Empty                from './views/empty.jsx';
+import NotFound             from './views/notFound.jsx';
+import IndexContent         from './views/indexContent.jsx';
+import Login                from './views/login.jsx';
+
 require('./css/main.scss');
+
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 ReactDOM.render(
   (
-    <Router history={browserHistory}>
-      <Route path="/" component={Layout}>
-        <IndexRoute component={IndexContent} />
-        <Route path="empty" component={Empty} />
-      </Route>
-      <Route path="/user" component={AuthLayout}>
-        <Route path="login" component={Login} />
-      </Route>
-      <Route path="*" component={NotFound} />
-    </Router>
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        <Route path="/" component={Layout}>
+          <IndexRoute component={IndexContent} />
+          <Route path="empty" component={Empty} />
+        </Route>
+        <Route path="/user" component={AuthLayout}>
+          <Route path="login" component={Login} />
+        </Route>
+        <Route path="*" component={NotFound} />
+      </Router>
+    </Provider>
   ),document.getElementById('page-content')
 );

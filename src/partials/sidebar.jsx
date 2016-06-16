@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 
 class SideBar extends Component {
   render() {
     return (
       <div id="sidebar" className="col-sm-4 col-md-3 xs-pd-0 xs-pb-45 animated">
         <div className="bg-white pd-40 radius-5 xs-radius-0  xs-mb-45 sidebar-wrap">
-
-          <SideBarAvatar currentUser={this.props.currentUser} />
-                       <PersonalFunction noticeNumber={this.props.noticeNumber} />
+          <SideBarAvatar user={this.props.user} />
+          <PersonalFunction noticeNumber={this.props.user.currentUser.noticeNumber} />
           <CategoryButton />
-
         </div>
-
       </div>
     );
   }
@@ -73,13 +71,31 @@ class PersonalFunction extends Component {
 }
 class SideBarAvatar extends Component {
   render() {
+    let isAuthenticated = this.props.user.login.isAuthenticated;
+    let sideBarAvatarContent;
+    if (!isAuthenticated) {
+      sideBarAvatarContent = (
+        <div className="text-center">
+          <Link to='/user/login'>
+            <span className="fz-1p1em">登入</span>
+          </Link>
+          <Link to='/user/register'>
+            <span className="fz-1p1em ml-25">註冊</span>
+          </Link>
+        </div>
+      );
+    } else {
+      sideBarAvatarContent = (
+        <a href="#member" className="">
+          <img src={this.props.user.currentUser.avatar} alt="" className="thumbnail-tiny" />
+          <span className="fz-1p1em ml-5">{this.props.user.currentUser.name}</span>
+        </a>
+      );
+    }
     return (
       <div className="avatar">
         <div className="relative">
-          <a href="#member" className="">
-            <img src={this.props.currentUser.avatar} alt="" className="thumbnail-tiny" />
-            <span className="fz-1p1em ml-5">{this.props.currentUser.name}</span>
-          </a>
+          {sideBarAvatarContent}
         </div>
       </div>
     );

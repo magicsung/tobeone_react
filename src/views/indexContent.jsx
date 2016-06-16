@@ -6,10 +6,9 @@ class IndexContent extends Component {
   render() {
     return (
       <div className="row">
-        <SideBar noticeNumber={this.props.noticeNumber}
-                 currentUser={this.props.currentUser}/>
+        <SideBar user={this.props.user}/>
         <Wall postList={this.props.postList}
-              currentUser={this.props.currentUser} />
+              user={this.props.user} />
       </div>
     );
   }

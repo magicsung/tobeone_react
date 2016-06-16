@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import PostContent from '../partials/postContent.jsx';
-import Comment from '../partials/comment.jsx';
-
+import ReactDOM           from 'react-dom';
+import PostContent        from '../partials/postContent.jsx';
+import Comment            from '../partials/comment.jsx';
 
 class Post extends Component {
   constructor(props, context) {
@@ -27,7 +26,7 @@ class Post extends Component {
 
   render() {
     return (
-      <div className="content bg-white radius-5 mt-15 xs-radius-0">
+      <div className="content bg-white radius-5 mb-15 xs-radius-0">
         <PostContent {...this.props} />
         <div className="bg-white clearfix radius-5">
           <PostActions newCommentClick={this.newCommentClick.bind(this)}

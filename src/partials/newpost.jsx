@@ -1,13 +1,13 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var iconStyle = {
-  position: 'relative',
-  top: '-2px'
-};
-var NewPost = React.createClass({
-  render: function() {
+class NewPost extends Component {
+  render() {
+    let iconStyle = {
+      position: 'relative',
+      top: '-2px'
+    };
     return (
-      <div className="new-post bg-white pd-20 radius-5 xs-radius-0">
+      <div className="new-post bg-white pd-20 radius-5 xs-radius-0 mb-15">
         <div className="row">
           <div className="col-md-1 col-sm-2 hidden-xs">
             <div className="avatar">
@@ -39,6 +39,7 @@ var NewPost = React.createClass({
       </div>
     );
   }
-});
+}
+
 
 module.exports = NewPost;

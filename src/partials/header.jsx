@@ -12,8 +12,8 @@ class Header extends Component {
             <BrandImage/>
             <SearchBox/>
             <MobileHeader/>
-            <MemberFeatures noticeNumber={this.props.noticeNumber}/>
-
+            <MemberFeatures user={this.props.user}
+                            handleLogoutClick={this.props.handleLogoutClick.bind(this)} />
           </div>
         </div>
       </header>
@@ -76,6 +76,9 @@ class MobileHeader extends Component {
 
 class MemberFeatures extends Component {
   render() {
+    let showNotice = false;
+    let noticeNumber = this.props.user.currentUser.noticeNumber;
+    if (noticeNumber > 0) { showNotice = true; }
     return (
       <div className="col-sm-4 clearfix hidden-xs">
         <ul className="inline-block link-white fz-1p1em lh-2em pull-right">
@@ -88,19 +91,39 @@ class MemberFeatures extends Component {
           <li className="ml-10 relative notice">
             <a href="#" className="dropdown-toggle">
               <i className="material-icons relative top-6px mr-5">&#xE7F5;</i>
-              <span className="badge bg-white color-primary-dark icon-badge">{this.props.noticeNumber}</span>
-              <span className="ml-5">通知</span>
+              <span className="badge bg-white color-primary-dark icon-badge">{ showNotice ? noticeNumber : '' }</span>
+              <span>通知</span>
             </a>
           </li>
           <li className="ml-10 relative login">
-            <Link to='/user/login' className="dropdown-toggle">
-              <i className="material-icons relative top-6px mr-5">&#xE7FD;</i>
-              <span>登入</span>
-            </Link>
+            <AuthState isAuthenticated={this.props.user.login.isAuthenticated}
+                       handleLogoutClick={this.props.handleLogoutClick.bind(this)} />
           </li>
         </ul>
       </div>
     );
+  }
+}
+
+class AuthState extends Component {
+  render() {
+    let isAuthenticated = this.props.isAuthenticated;
+    if (!isAuthenticated) {
+      return (
+        <Link to='/user/login'>
+          <i className="material-icons relative top-6px mr-5">&#xE7FD;</i>
+          <span>登入</span>
+        </Link>
+      );
+    } else {
+      return (
+        <a href="#"
+           onClick={this.props.handleLogoutClick.bind(this)}>
+          <i className="material-icons relative top-6px mr-5">&#xE7FD;</i>
+          <span>登出</span>
+        </a>
+      );
+    }
   }
 }
 
