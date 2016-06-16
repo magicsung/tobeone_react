@@ -1,11 +1,13 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var PageNotFound = React.createClass({
-  render: function() {
+class PageNotFound extends Component {
+  render() {
     return (
-      <h1>Page Not Found!</h1>
+      <div className="text-center">
+        <h1>Page Not Found!</h1>
+      </div>
     );
   }
-});
+}
 
 module.exports = PageNotFound;
