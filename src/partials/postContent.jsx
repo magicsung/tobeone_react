@@ -51,7 +51,7 @@ class Post extends Component {
           <div className="col-xs-12 custom-content mb-20 pl-80 xs-pl-15">
             <div className="description mt-5">
               {this.props.postDescription}
-              <span className="time-ago fz-p8em"> - about 21 hour ago</span>
+              <span className="time-ago fz-p8em"> - {this.props.postTimeAgo}</span>
             </div>
             <div className="video mt-15 relative inline-block">
               <a href="/video/xxx">
