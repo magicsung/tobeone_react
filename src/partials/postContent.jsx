@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 
 class Post extends Component {
   constructor(props, context) {
@@ -17,6 +18,7 @@ class Post extends Component {
   }
 
   render() {
+    let timeAgo = moment(this.props.created_at, 'YYYY M D h:m:s').fromNow();
     let reportMenu;
     if (this.state.isReportOpen) {
        reportMenu = <ReportMenu />;
@@ -28,7 +30,7 @@ class Post extends Component {
             <div className="avatar mb-15 mr-15 pull-left">
               <div className="relative">
                 <a href="/talent" className="">
-                  <img src={this.props.postOwnerAvatar} alt="" className="thumbnail-small" />
+                  <img src={this.props.owner.avatar} alt="" className="thumbnail-small" />
                 </a>
               </div>
             </div>
@@ -41,17 +43,17 @@ class Post extends Component {
               </div>
               <a href="#" className="btn btn-xs btn-gray-light radius-5 pull-right">關注中</a>
               <div className="name fz-1p4em link-red">
-                <a href="/talent/ooo">{this.props.postOwnerName}</a>
+                <a href="/talent/ooo">{this.props.owner.username}</a>
               </div>
               <div className="fz-1p2em">
-                <span className="title">{this.props.postTitle}</span>
+                <span className="title">{this.props.title}</span>
+                <span className="time-ago fz-p8em"> - {timeAgo}</span>
               </div>
             </div>
           </div>
           <div className="col-xs-12 custom-content mb-20 pl-80 xs-pl-15">
             <div className="description mt-5">
-              {this.props.postDescription}
-              <span className="time-ago fz-p8em"> - {this.props.postTimeAgo}</span>
+              {this.props.description}
             </div>
             <div className="video mt-15 relative inline-block">
               <a href="/video/xxx">

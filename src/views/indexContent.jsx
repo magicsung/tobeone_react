@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import SideBar from '../partials/sidebar.jsx';
-import Wall from '../partials/wall.jsx';
+import SideBar            from '../partials/sidebar.jsx';
+import Wall               from '../partials/wall.jsx';
 
 class IndexContent extends Component {
   render() {
@@ -8,7 +8,8 @@ class IndexContent extends Component {
       <div className="row">
         <SideBar user={this.props.user}/>
         <Wall postList={this.props.postList}
-              user={this.props.user} />
+              user={this.props.user}
+              handleFetchPostList={this.props.handleFetchPostList.bind(this)} />
       </div>
     );
   }

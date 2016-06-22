@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 
 class Comment extends Component {
   constructor(props, context) {
@@ -18,10 +19,15 @@ class Comment extends Component {
   }
 
   render() {
-    let replyList = this.props.comment.reply.map((reply, index) => {
-      return <Reply key={index}
-                    reply={reply} />;
-    }, this);
+    let timeAgo = moment(this.props.comment.created_at, 'YYYY M D h:m:s').fromNow();
+    let replyList = [];
+    let reply = this.props.comment.reply;
+    if (reply) {
+      replyList = reply.map((reply, index) => {
+        return <Reply key={index}
+                      reply={reply} />;
+      }, this);
+    }
     let newReply;
     if (this.state.isNewReplyOpen) {
       newReply = <NewReply currentUser={this.props.currentUser} />;
@@ -31,20 +37,23 @@ class Comment extends Component {
         <div className="avatar mr-15 pull-left">
           <div className="relative">
             <a href="#member" className="">
-              <img src={this.props.comment.ownerAvatar} alt="" className="thumbnail-small" />
+              <img src={this.props.comment.owner.avatar} alt="" className="thumbnail-small" />
             </a>
           </div>
         </div>
         <div className="w100-65 pull-left">
           <div className="comment-detail">
-            <div className="name fz-1p2em link-red">
-              <a href="#">{this.props.comment.ownerName}</a>
-            </div>
-            <div className="comments">
+            <span className="name fz-1p2em link-red mr-10">
+              <a href="#">{this.props.comment.owner.username}</a>
+            </span>
+            <span className="comments">
               {this.props.comment.description}
-            </div>
+            </span>
             <div className="reply-comment mt-5 link-red-dark">
-              <a className="pointer" onClick={this.newReplyClick.bind(this)}>回覆</a> <span className="fz-p8em"> - <span className="time-ago">{this.props.comment.timeAgo}</span></span>
+              <a className="pointer mr-5" onClick={this.newReplyClick.bind(this)}>回覆</a>
+              <span className="fz-p8em">
+                - {timeAgo}
+              </span>
             </div>
           </div>
 
@@ -70,13 +79,13 @@ class Reply extends Component {
             </div>
           </div>
           <div className="pull-left w100-50">
-            <div className="name fz-1em link-red">
+            <span className="name fz-1em link-red">
               <a href="#">NAME</a>
-            </div>
-            <div className="comments">
+            </span>
+            <span className="comments">
               <span comment>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
               - <span className="time-ago fz-p8em">14小時前</span>
-            </div>
+          </span>
           </div>
         </div>
       </div>

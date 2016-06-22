@@ -25,9 +25,9 @@ class BrandImage extends Component {
   render() {
     return (
       <div className="col-sm-4 col-xs-5 xs-pd-0 brand-logo ">
-        <a href="/" className="ml-10 w100 block">
+        <Link to="/" className="ml-10 w100 block">
           <img src="/images/2be1_logo_white.svg" className="height-40" alt=""/>
-        </a>
+        </Link>
       </div>
     );
   }

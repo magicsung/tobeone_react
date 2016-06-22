@@ -3,12 +3,17 @@ import { connect }        from 'react-redux';
 import Header             from '../partials/header.jsx';
 import Footer             from '../partials/footer.jsx';
 import { userLogout }     from '../actions/userLoginActions';
+import { fetchPostList }  from '../actions/fetchPostListActions';
 
 class Layout extends Component {
   handleLogoutClick(event) {
     event.preventDefault();
     const { dispatch } = this.props;
     dispatch(userLogout());
+  }
+  handleFetchPostList() {
+    const { dispatch } = this.props;
+    dispatch(fetchPostList());
   }
   render() {
     return (
@@ -20,7 +25,8 @@ class Layout extends Component {
           <div className="container-fluid mt-15 mb-15 header-height">
             {this.props.children && React.cloneElement(this.props.children, {
              user: this.props.user,
-             postList: this.props.postList
+             postList: this.props.postList,
+             handleFetchPostList: this.handleFetchPostList.bind(this)
             })}
           </div>
         </div>

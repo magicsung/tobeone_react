@@ -116,19 +116,19 @@ class PostComments extends Component {
       <div className="post-comments col-xs-12 pd-20 bg-light pt-10">
         <div className="post-info fz-1em lh-1p5em border-bottom-gray-1px pb-10">
           <a href="#">
-            <span className="likes-count">{this.props.likesNumber}</span>人喜歡
+            <span className="likes-count">{this.props.likes}</span>人喜歡
           </a>
           <span>｜</span>
           <a href="#">
-            <span className="comments-count">{this.props.commentsNumber}</span>則留言
+            <span className="comments-count">{this.props.comments}</span>則留言
           </a>
         </div>
-        <div className="link-red-dark">
+        {/*<div className="link-red-dark">
           <a href="#" className="">
-            查看全部<span className="reply-count">{this.props.commentsNumber}</span>則回覆
+            查看全部<span className="reply-count">{this.props.comments}</span>則回覆
             <i className="material-icons relative top-6px">&#xE5C5;</i>
           </a>
-        </div>
+        </div>*/}
 
         <div classNameName="comments">
           {commentList}
