@@ -19,7 +19,7 @@ class Comment extends Component {
   }
 
   render() {
-    let timeAgo = moment(this.props.comment.created_at, 'YYYY M D h:m:s').fromNow();
+    let timeAgo = moment(moment(this.props.comment.created_at).format('YYYY-MM-DD HH:mm:ss')).fromNow();
     let replyList = [];
     let reply = this.props.comment.reply;
     if (reply) {
@@ -33,7 +33,7 @@ class Comment extends Component {
       newReply = <NewReply currentUser={this.props.currentUser} />;
     }
     return (
-      <div className="comments-major clearfix mt-20">
+      <div className="comments-major clearfix mt-10 mb-10">
         <div className="avatar mr-15 pull-left">
           <div className="relative">
             <a href="#member" className="">
@@ -69,7 +69,7 @@ class Comment extends Component {
 class Reply extends Component {
   render() {
     return (
-      <div className="comments-minor link-red-dark clearfix">
+      <div className="comments link-red-dark clearfix">
         <div className="mt-10 clearfix">
           <div className="avatar pull-left mr-10">
             <div className="relative">
@@ -104,7 +104,7 @@ class NewReply extends Component {
 
   render() {
     return (
-      <div className="reply-minor mt-10 clearfix">
+      <div className="reply mt-10 clearfix">
         <div className="avatar pull-left mr-10">
           <div className="relative">
             <img src={this.props.currentUser.avatar} alt="" className="thumbnail-tiny" />

@@ -113,8 +113,8 @@ class PostComments extends Component {
       newComment = <NewComment currentUser={this.props.currentUser} />;
     }
     return (
-      <div className="post-comments col-xs-12 pd-20 bg-light pt-10">
-        <div className="post-info fz-1em lh-1p5em border-bottom-gray-1px pb-10">
+      <div className="post-comments col-xs-12 bg-light pt-10 pd-lr-20 radius-bottom-5">
+        <div className="post-info fz-1em lh-1p5em pb-10">
           <a href="#">
             <span className="likes-count">{this.props.likes}</span>人喜歡
           </a>
@@ -150,7 +150,7 @@ class NewComment extends Component {
 
   render() {
     return (
-      <div className="new-comments mt-15">
+      <div className="new-comments mt-10 mb-10 clearfix">
         <div className="pull-left mr-15">
           <div className="avatar">
             <div className="relative">

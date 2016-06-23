@@ -18,7 +18,7 @@ class Post extends Component {
   }
 
   render() {
-    let timeAgo = moment(this.props.created_at, 'YYYY M D h:m:s').fromNow();
+    let timeAgo = moment(moment(this.props.created_at).format('YYYY-MM-DD HH:mm:ss')).fromNow();
     let reportMenu;
     if (this.state.isReportOpen) {
        reportMenu = <ReportMenu />;

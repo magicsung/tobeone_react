@@ -87,8 +87,9 @@ h1, h2, h3, h4, h5, h6, p, a{ color: $gray; }
 .pr-10 { padding-right: 10px; }
 .pb-10 { padding-bottom: 10px; }
 .pt-10 { padding-top: 10px; }
-.pd-lr-5 { padding: 0 5px 0 5px; }
-.pd-lr-10 { padding: 0 10px 0 10px; }
+.pd-lr-5 { padding-left: 5px; padding-right: 5px; }
+.pd-lr-10 { padding-left: 10px; padding-right: 10px; }
+.pd-lr-20 { padding-left: 20px; padding-right: 20px; }
 .item-2 { width: 50%; float: left;}
 .item-3 { width: 33.33%; float: left;}
 .display-xs-inline { display: none !important; }
@@ -97,6 +98,8 @@ h1, h2, h3, h4, h5, h6, p, a{ color: $gray; }
 .radius-20 { @include border-radius(20px);}
 .radius-10 { @include border-radius(10px);}
 .radius-5 { @include border-radius(5px);}
+.radius-bottom-5 { @include border-bottom-radius(5px); }
+.radius-bottom-10 { @include border-bottom-radius(10px); }
 .radius-right-5 { @include border-right-radius(5px);}
 .w100-115 { width: calc(100% - 115px); }
 .w100-80 { width: calc(100% - 80px); }
