@@ -16,20 +16,6 @@ const initialState = {
     //       description: "comment content -- Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     //       timeAgo: "1分鐘前",
     //       reply: []
-    //     },
-    //     {
-    //       ownerAvatar: "http://dummyimage.com/100x100/cccccc/fff&text=avatar",
-    //       ownerName: "NAME2",
-    //       description: "comment2 -- Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    //       timeAgo: "3分鐘前",
-    //       reply: []
-    //     },
-    //     {
-    //       ownerAvatar: "http://dummyimage.com/100x100/cccccc/fff&text=avatar",
-    //       ownerName: "NAME3",
-    //       description: "comment3 -- Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    //       timeAgo: "1分鐘前",
-    //       reply: []
     //     }
     //   ]
     // }
@@ -42,7 +28,17 @@ export function postReducer(state = initialState, action){
           return Object.assign({}, state, {
             postList: action.postList
           });
+        case 'SET_COMMENT_TO_POST_LIST':
+          let setCommentToPostList = Object.assign([], state.postList);
+          setCommentToPostList.map(function(post) {
+            if (post.id == action.postId) {
+              post.commentList.push(action.comment)
+            }
+          });
+          return Object.assign({}, state, {
+            postList: setCommentToPostList
+          });
         default:
-            return state;
+          return state;
     }
 }

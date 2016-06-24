@@ -31,7 +31,9 @@ class Post extends Component {
         <div className="bg-white clearfix radius-5">
           <PostActions newCommentClick={this.newCommentClick.bind(this)}
                        likeClick={this.likeClick.bind(this)} />
-          <PostComments {...this.props} isNewCommentOpen={this.state.isNewCommentOpen} />
+          <PostComments {...this.props}
+                        isNewCommentOpen={this.state.isNewCommentOpen}
+                        handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />
         </div>
       </div>
     );
@@ -110,7 +112,9 @@ class PostComments extends Component {
     }, this);
     let newComment;
     if (this.props.isNewCommentOpen) {
-      newComment = <NewComment currentUser={this.props.currentUser} />;
+      newComment = <NewComment postId={this.props.id}
+                               currentUser={this.props.currentUser}
+                               handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />;
     }
     return (
       <div className="post-comments col-xs-12 bg-light pt-10 pd-lr-20 radius-bottom-5">
@@ -140,10 +144,30 @@ class PostComments extends Component {
 }
 
 class NewComment extends Component {
-  componentDidMount(){
-    ReactDOM.findDOMNode(this.refs.newComment).focus();
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      commentContent: ''
+    };
+  };
+
+  handleCommentSubmit(event) {
+    event.preventDefault();
+    this.setState({commentContent: ''});
+    this.props.handleCommentSubmit({
+      postId: this.props.postId,
+      comment: this.state.commentContent,
+      token: this.props.currentUser.token
+    });
+  }
+  handleCommentChange(event) {
+    this.setState({commentContent: event.target.value});
   }
 
+  componentDidMount() {
+    ReactDOM.findDOMNode(this.refs.newComment).focus();
+  }
   componentDidUpdate() {
     ReactDOM.findDOMNode(this.refs.newComment).focus();
   }
@@ -161,9 +185,16 @@ class NewComment extends Component {
           </div>
         </div>
         <div className="pull-left w100-65">
-          <form action="index.html" method="post" className="mt-5 clearfix">
+          <form action=""
+                className="mt-5 clearfix"
+                onSubmit={this.handleCommentSubmit.bind(this)} >
             <div className="w100 pull-left">
-              <input type="text" ref="newComment" placeholder="留言......" className="form-control border radius-5 w100 height-40" />
+              <input type="text"
+                     ref="newComment"
+                     placeholder="留言......"
+                     className="form-control border radius-5 w100 height-40"
+                     value={this.state.commentContent}
+                     onChange={this.handleCommentChange.bind(this)} />
             </div>
           </form>
         </div>

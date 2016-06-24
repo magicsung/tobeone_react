@@ -18,7 +18,8 @@ class Wall extends Component {
     } else {
       renderPostList = postList.map((post, index) => {
         return <Post key={index} {...post}
-                     currentUser={this.props.user.currentUser} />
+                     currentUser={this.props.user.currentUser}
+                     handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />
       }, this);
     }
     return (

@@ -4,6 +4,7 @@ import Header             from '../partials/header.jsx';
 import Footer             from '../partials/footer.jsx';
 import { userLogout }     from '../actions/userLoginActions';
 import { fetchPostList }  from '../actions/fetchPostListActions';
+import { newComment }     from '../actions/newCommentActions';
 
 class Layout extends Component {
   handleLogoutClick(event) {
@@ -14,6 +15,10 @@ class Layout extends Component {
   handleFetchPostList() {
     const { dispatch } = this.props;
     dispatch(fetchPostList());
+  }
+  handleCommentSubmit(comment) {
+    const { dispatch } = this.props;
+    dispatch(newComment(comment));
   }
   render() {
     return (
@@ -26,7 +31,8 @@ class Layout extends Component {
             {this.props.children && React.cloneElement(this.props.children, {
              user: this.props.user,
              postList: this.props.postList,
-             handleFetchPostList: this.handleFetchPostList.bind(this)
+             handleFetchPostList: this.handleFetchPostList.bind(this),
+             handleCommentSubmit: this.handleCommentSubmit.bind(this)
             })}
           </div>
         </div>

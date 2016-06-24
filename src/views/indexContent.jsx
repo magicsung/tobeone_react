@@ -9,7 +9,8 @@ class IndexContent extends Component {
         <SideBar user={this.props.user}/>
         <Wall postList={this.props.postList}
               user={this.props.user}
-              handleFetchPostList={this.props.handleFetchPostList.bind(this)} />
+              handleFetchPostList={this.props.handleFetchPostList.bind(this)}
+              handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />
       </div>
     );
   }
