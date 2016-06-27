@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 
-class Post extends Component {
+class PostContent extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -85,4 +85,4 @@ class ReportMenu extends Component {
   }
 }
 
-export default Post;
+export default PostContent;

@@ -103,18 +103,44 @@ class ShareMenu extends Component {
 }
 
 class PostComments extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      showAllCommentsOpen: true
+    };
+  }
+
+  handleshowAllCommentsClick(event) {
+    event.preventDefault();
+    this.setState({showAllCommentsOpen: false});
+  }
 
   render() {
     let commentList = this.props.commentList.map((comment, index) => {
-      return <Comment key={index}
-                      comment={comment}
-                      currentUser={this.props.currentUser} />;
+      if (index > this.props.commentList.length - 4 || !this.state.showAllCommentsOpen) {
+        return (
+          <Comment key={index}
+                   comment={comment}
+                   currentUser={this.props.currentUser} />
+        );
+      }
     }, this);
     let newComment;
     if (this.props.isNewCommentOpen) {
       newComment = <NewComment postId={this.props.id}
                                currentUser={this.props.currentUser}
                                handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />;
+    }
+    let showAllComments;
+    if (this.props.comments > 3 && this.state.showAllCommentsOpen) {
+      showAllComments = (
+        <div className="link-red-dark">
+          <a href="#" className="" onClick={this.handleshowAllCommentsClick.bind(this)} >
+            查看全部<span className="reply-count">{this.props.comments}</span>則回覆
+            <i className="material-icons relative top-6px">&#xE5C5;</i>
+          </a>
+        </div>
+      );
     }
     return (
       <div className="post-comments col-xs-12 bg-light pt-10 pd-lr-20 radius-bottom-5">
@@ -127,13 +153,7 @@ class PostComments extends Component {
             <span className="comments-count">{this.props.comments}</span>則留言
           </a>
         </div>
-        {/*<div className="link-red-dark">
-          <a href="#" className="">
-            查看全部<span className="reply-count">{this.props.comments}</span>則回覆
-            <i className="material-icons relative top-6px">&#xE5C5;</i>
-          </a>
-        </div>*/}
-
+        {showAllComments}
         <div classNameName="comments">
           {commentList}
           {newComment}
