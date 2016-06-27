@@ -55,6 +55,7 @@ export function userLoginSuccess(data) {
   localStorage.setItem('token', data.token);
   return {
     type: 'USER_LOGIN_SUCCESS',
+    id: jwtDecode(data.token).id,
     token: data.token,
     username: data.username
   }

@@ -18,6 +18,12 @@ class Comment extends Component {
     })
   }
 
+  handleCommentDeleteClcik(event) {
+    event.preventDefault();
+    if (confirm("this will delete comment, are you sure?"))
+      this.props.handleCommentDeleteClcik(this.props.comment.id);
+  }
+
   render() {
     let timeAgo = moment(moment(this.props.comment.created_at).format('YYYY-MM-DD HH:mm:ss')).fromNow();
     let replyList = [];
@@ -32,6 +38,16 @@ class Comment extends Component {
     if (this.state.isNewReplyOpen) {
       newReply = <NewReply currentUser={this.props.currentUser} />;
     }
+    let deleteComment;
+    if (this.props.comment.owner._id === this.props.currentUser.id) {
+      deleteComment = (
+        <a href="#"
+           className="pull-right hover-show-item"
+           onClick={this.handleCommentDeleteClcik.bind(this)} >
+           <i className="material-icons fz-1p1em">&#xE5CD;</i>
+        </a>
+      );
+    }
     return (
       <div className="comments-major clearfix mt-10 mb-10">
         <div className="avatar mr-15 pull-left">
@@ -41,7 +57,8 @@ class Comment extends Component {
             </a>
           </div>
         </div>
-        <div className="w100-65 pull-left">
+        <div className="w100-65 pull-left hover-show">
+          {deleteComment}
           <div className="comment-detail">
             <span className="name fz-1p2em link-red mr-10">
               <a href="#">{this.props.comment.owner.username}</a>

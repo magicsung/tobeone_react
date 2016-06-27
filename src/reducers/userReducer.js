@@ -11,6 +11,7 @@ const initialState = {
     errorMessage: ''
   },
   currentUser: {
+    id: null,
     avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=nologin',
     name: null,
     token: null,
@@ -49,6 +50,7 @@ export function userReducer(state = initialState, action){
           errorMessage: null
         },
         currentUser: {
+          id: action.id,
           avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=' + action.username,
           name: action.username,
           token: action.token
@@ -61,6 +63,7 @@ export function userReducer(state = initialState, action){
           isAuthenticated: false,
         },
         currentUser: {
+          id: null,
           avatar: 'http://dummyimage.com/100x100/cccccc/fff&text=nologin',
           name: null,
           token: null

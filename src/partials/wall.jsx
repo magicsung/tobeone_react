@@ -19,7 +19,8 @@ class Wall extends Component {
       renderPostList = postList.map((post, index) => {
         return <Post key={index} {...post}
                      currentUser={this.props.user.currentUser}
-                     handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />
+                     handleCommentSubmit={this.props.handleCommentSubmit.bind(this)}
+                     handleCommentDeleteClcik={this.props.handleCommentDeleteClcik.bind(this)} />
       }, this);
     }
     return (

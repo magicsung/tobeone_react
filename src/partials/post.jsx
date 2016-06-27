@@ -33,7 +33,8 @@ class Post extends Component {
                        likeClick={this.likeClick.bind(this)} />
           <PostComments {...this.props}
                         isNewCommentOpen={this.state.isNewCommentOpen}
-                        handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />
+                        handleCommentSubmit={this.props.handleCommentSubmit.bind(this)}
+                        handleCommentDeleteClcik={this.props.handleCommentDeleteClcik.bind(this)} />
         </div>
       </div>
     );
@@ -115,13 +116,22 @@ class PostComments extends Component {
     this.setState({showAllCommentsOpen: false});
   }
 
+  handleCommentDeleteClcik(commentId) {
+    this.props.handleCommentDeleteClcik({
+      token: this.props.currentUser.token,
+      postId: this.props.id,
+      commentId: commentId
+    });
+  }
+
   render() {
     let commentList = this.props.commentList.map((comment, index) => {
       if (index > this.props.commentList.length - 4 || !this.state.showAllCommentsOpen) {
         return (
           <Comment key={index}
                    comment={comment}
-                   currentUser={this.props.currentUser} />
+                   currentUser={this.props.currentUser}
+                   handleCommentDeleteClcik={this.handleCommentDeleteClcik.bind(this)} />
         );
       }
     }, this);

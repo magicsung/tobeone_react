@@ -4,7 +4,7 @@ import Header             from '../partials/header.jsx';
 import Footer             from '../partials/footer.jsx';
 import { userLogout }     from '../actions/userLoginActions';
 import { fetchPostList }  from '../actions/fetchPostListActions';
-import { newComment }     from '../actions/newCommentActions';
+import { newComment, deleteComment }     from '../actions/CommentActions';
 
 class Layout extends Component {
   handleLogoutClick(event) {
@@ -20,6 +20,10 @@ class Layout extends Component {
     const { dispatch } = this.props;
     dispatch(newComment(comment));
   }
+  handleCommentDeleteClcik(comment) {
+    const { dispatch } = this.props;
+    dispatch(deleteComment(comment));
+  }
   render() {
     return (
       <div className="h100">
@@ -32,7 +36,8 @@ class Layout extends Component {
              user: this.props.user,
              postList: this.props.postList,
              handleFetchPostList: this.handleFetchPostList.bind(this),
-             handleCommentSubmit: this.handleCommentSubmit.bind(this)
+             handleCommentSubmit: this.handleCommentSubmit.bind(this),
+             handleCommentDeleteClcik: this.handleCommentDeleteClcik.bind(this)
             })}
           </div>
         </div>

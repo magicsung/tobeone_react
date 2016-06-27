@@ -10,7 +10,8 @@ class IndexContent extends Component {
         <Wall postList={this.props.postList}
               user={this.props.user}
               handleFetchPostList={this.props.handleFetchPostList.bind(this)}
-              handleCommentSubmit={this.props.handleCommentSubmit.bind(this)} />
+              handleCommentSubmit={this.props.handleCommentSubmit.bind(this)}
+              handleCommentDeleteClcik={this.props.handleCommentDeleteClcik.bind(this)} />
       </div>
     );
   }
