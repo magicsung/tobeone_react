@@ -93,10 +93,23 @@ class PostActions extends Component {
 }
 
 class ShareMenu extends Component {
+  handleFbShareClick(event) {
+    event.preventDefault();
+    FB.ui({
+      method: 'share',
+      mobile_iframe: true,
+      href: 'http://localhost:8080',
+    }, function(response){});
+  }
   render() {
     return (
       <ul className="dropdown-menu show radius-5">
-        <li><a href="#">分享到 Facebook</a></li>
+        <li>
+          <a href="#"
+             onClick={this.handleFbShareClick.bind(this)} >
+             分享到 Facebook
+          </a>
+        </li>
         <li><a href="#">分享到 Weibo</a></li>
       </ul>
     );
