@@ -1,10 +1,11 @@
 import $ from 'jquery';
 import { fetchPostList }  from './fetchPostListActions';
+import config from '../config/index';
 
 export function newComment(commentInfo) {
   return function(dispatch) {
     $.ajax({
-      url: 'http://localhost:3000/api_v1/posts/' + commentInfo.postId + '/comments',
+      url: config.server + '/api_v1/posts/' + commentInfo.postId + '/comments',
       dataType: 'json',
       type: 'POST',
       headers: {

@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import config from '../config/index';
 import { browserHistory } from 'react-router';
 
 export function userRegister(loginInfo) {
@@ -20,7 +21,7 @@ export function userRegister(loginInfo) {
     } else {
       dispatch(userRegisterRequest());
       $.ajax({
-        url: 'http://localhost:3000/api_v1/users/register',
+        url:  config.server + '/api_v1/users/register',
         dataType: 'json',
         type: 'POST',
         data: {

@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import config from '../config/index';
 import { browserHistory } from 'react-router';
 import jwtDecode from 'jwt-decode';
 
@@ -11,7 +12,7 @@ export function userLogin(loginInfo) {
     } else {
       dispatch(userLoginRequest());
       $.ajax({
-        url: 'http://localhost:3000/api_v1/users/login',
+        url:  config.server + '/api_v1/users/login',
         dataType: 'json',
         type: 'POST',
         data: {

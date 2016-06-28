@@ -1,9 +1,10 @@
 import $ from 'jquery';
+import config from '../config/index';
 
 export function fetchPostList() {
   return function(dispatch) {
     $.ajax({
-      url: 'http://localhost:3000/api_v1/posts',
+      url:  config.server + '/api_v1/posts/',
       dataType: 'json',
       type: 'GET',
       success: function(data) {
