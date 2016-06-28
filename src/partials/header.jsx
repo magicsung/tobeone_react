@@ -55,9 +55,6 @@ class SearchBox extends Component {
 }
 
 class MobileHeader extends Component {
-  handleClick() {
-    $('html').toggleClass("noscroll");
-  }
   render() {
     return (
       <div className="display-xs-inline pull-right">
@@ -66,7 +63,9 @@ class MobileHeader extends Component {
             <i className="material-icons color-white fz-2em">&#xE8B6;</i>
           </button>
         </a>
-        <label id="xs-menu-action" htmlFor="toggle-menu" className="btn btn-gray height-45 bg-opacity hover-none" onClick={this.handleClick}>
+        <label id="xs-menu-action"
+               htmlFor="toggle-menu"
+               className="btn btn-gray height-45 bg-opacity hover-none" >
           <i className="material-icons color-white fz-2em">&#xE5D2;</i>
         </label>
       </div>

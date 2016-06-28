@@ -25,17 +25,29 @@ header {
 }
 
 #sidebar {
-  @include animation-name(slideInLeft);
+  @include transition(all .2s ease-in-out);
   @include bp(xs) {
     position: fixed;
     width: 100%;
     z-index: 100;
     top: $header-height;
-    left: 0;
+    right: 0;
     height: 100%;
     overflow-y: scroll;
   };
 }
+input#toggle-menu:checked {
+  & ~ div #sidebar {
+    @include bp(xs) { right: 100% };
+  }
+  & ~ header #xs-menu-action {
+    background-color: inherit;
+  }
+}
+#xs-menu-action {
+  background-color: $brand-primary-darker;
+}
+
 .header-height {
   @include bp(xs) {
     margin-top: $header-height;
@@ -84,16 +96,4 @@ header {
       }
     }
   }
-}
-
-input#toggle-menu:checked ~ div #sidebar {
-  @include bp(xs) {
-    @include animation-name(slideOutLeft);
-  };
-}
-#xs-menu-action {
-  background-color: $brand-primary-darker;
-}
-input#toggle-menu:checked ~ header #xs-menu-action {
-  background-color: inherit;
 }
