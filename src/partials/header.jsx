@@ -82,10 +82,10 @@ class MemberFeatures extends Component {
       <div className="col-sm-4 clearfix hidden-xs">
         <ul className="inline-block link-white fz-1p1em lh-2em pull-right">
           <li className="ml-20">
-            <a href="/upload">
+            <Link to="/upload">
               <i className="material-icons relative top-6px mr-5">&#xE2C3;</i>
               <span>上傳</span>
-            </a>
+            </Link>
           </li>
           <li className="ml-10 relative notice">
             <a href="#" className="dropdown-toggle">

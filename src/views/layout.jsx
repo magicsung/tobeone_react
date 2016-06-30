@@ -4,25 +4,26 @@ import Header             from '../partials/header.jsx';
 import Footer             from '../partials/footer.jsx';
 import { userLogout }     from '../actions/userLoginActions';
 import { fetchPostList }  from '../actions/fetchPostListActions';
-import { newComment, deleteComment }     from '../actions/CommentActions';
+import { newComment, deleteComment } from '../actions/CommentActions';
+import { uploadVideo }  from '../actions/uploadVideoActions';
 
 class Layout extends Component {
   handleLogoutClick(event) {
     event.preventDefault();
-    const { dispatch } = this.props;
-    dispatch(userLogout());
+    this.props.dispatch(userLogout());
   }
   handleFetchPostList() {
-    const { dispatch } = this.props;
-    dispatch(fetchPostList());
+    this.props.dispatch(fetchPostList());
   }
   handleCommentSubmit(comment) {
-    const { dispatch } = this.props;
-    dispatch(newComment(comment));
+    this.props.dispatch(newComment(comment));
   }
   handleCommentDeleteClcik(comment) {
-    const { dispatch } = this.props;
-    dispatch(deleteComment(comment));
+    this.props.dispatch(deleteComment(comment));
+  }
+  handleUploadSubmit(postInfo) {
+    let token = this.props.user.currentUser.token;
+    this.props.dispatch(uploadVideo(postInfo, token));
   }
   render() {
     return (
@@ -37,7 +38,8 @@ class Layout extends Component {
              postList: this.props.postList,
              handleFetchPostList: this.handleFetchPostList.bind(this),
              handleCommentSubmit: this.handleCommentSubmit.bind(this),
-             handleCommentDeleteClcik: this.handleCommentDeleteClcik.bind(this)
+             handleCommentDeleteClcik: this.handleCommentDeleteClcik.bind(this),
+             handleUploadSubmit: this.handleUploadSubmit.bind(this)
             })}
           </div>
         </div>

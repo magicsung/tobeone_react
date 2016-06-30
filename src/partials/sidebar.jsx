@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 
 class SideBar extends Component {
   render() {
+    let sidebarClass = "col-sm-4 col-md-3 xs-pd-0 xs-pb-45 ";
+    if (this.props.isSidebarHidden) sidebarClass += "display-xs-block";
     return (
-      <div id="sidebar" className="col-sm-4 col-md-3 xs-pd-0 xs-pb-45" >
+      <div id="sidebar" className={sidebarClass} >
         <div className="bg-white pd-40 radius-5 xs-radius-0  xs-mb-45 sidebar-wrap">
           <SideBarAvatar user={this.props.user} />
           <PersonalFunction noticeNumber={this.props.user.currentUser.noticeNumber} />

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 
 class NewPost extends Component {
   render() {
@@ -21,14 +22,14 @@ class NewPost extends Component {
           <div className="col-md-11 col-sm-10 col-xs-12">
             <div className="row mt-5">
               <div className="col-xs-12">
-                <a href="/upload">
+                <Link to="/upload">
                   <button type="submit" name="button" className="btn btn-red radius-5 width-300 xs-w100">
                     <i className="material-icons relative top-3px fz-1p5em">&#xE2C3;</i>
                     <span className="" style={iconStyle}>
                       上傳影片
                     </span>
                   </button>
-                </a>
+                </Link>
                 <span className="ml-20 bg-gray-lighter pd-5 left-arrow relative radius-right-5 hidden-xs hidden-sm">
                   想秀什麼？立馬上傳！
                 </span>

@@ -9,6 +9,7 @@ import Layout               from './views/layout.jsx';
 import AuthLayout           from './views/authLayout.jsx';
 import NotFound             from './views/notFound.jsx';
 import IndexContent         from './views/indexContent.jsx';
+import Upload               from './views/upload.jsx';
 import Login                from './views/login.jsx';
 import Register             from './views/register.jsx';
 
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Router history={browserHistory}>
         <Route path="/" component={Layout}>
           <IndexRoute component={IndexContent} />
+          <Route path="upload" component={Upload} />
         </Route>
         <Route path="/user" component={AuthLayout}>
           <Route path="login" component={Login} />
