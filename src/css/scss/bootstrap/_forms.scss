@@ -631,3 +631,7 @@ input[type="checkbox"] {
     margin-right: -2px;
   }
 }
+
+.input-error > input {
+  background-color: $brand-primary-lighter;
+}

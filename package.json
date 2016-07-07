@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "deep-assign": "^2.0.0",
     "express": "^4.13.4",
     "jquery": "^2.2.2",
     "jwt-decode": "^2.0.1",

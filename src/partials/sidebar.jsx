@@ -26,6 +26,11 @@ class PersonalFunction extends Component {
               個人專區
             </a>
           </li>
+          <li className="display-xs-block">
+            <Link to="/profile" className="mt-5">
+              <span>編輯個人資料</span>
+            </Link>
+          </li>
           <li className="display-xs-block notice">
             <a href="#" className="mt-5">
               <span>通知</span>
@@ -88,10 +93,17 @@ class SideBarAvatar extends Component {
       );
     } else {
       sideBarAvatarContent = (
-        <a href="#member" className="">
-          <img src={this.props.user.currentUser.avatar} alt="" className="thumbnail-tiny" />
-          <span className="fz-1p1em ml-5">{this.props.user.currentUser.name}</span>
-        </a>
+        <div>
+          <a href="#member" className="">
+            <img src={this.props.user.currentUser.avatar} alt="" className="thumbnail-tiny" />
+            <span className="fz-1p1em ml-5">{this.props.user.currentUser.name}</span>
+          </a>
+          <span className="relative hidden-xs">
+            <Link to="/profile" className="ml-5" alt="text">
+              <i className="material-icons fz-1em relative top-1px">&#xE254;</i>
+            </Link>
+          </span>
+        </div>
       );
     }
     return (
@@ -125,7 +137,7 @@ class CategoryButton extends Component {
             </a>
           </li>
           <li className="mt-15 popover popover-sticky hidden-xs">
-            <a href="#" className="form-control hover-red radius-20 lh-1p5em fz-1p1em height-40 active">
+            <a href="#" className="form-control hover-red radius-20 lh-1p5em fz-1p1em height-40">
               我的關注
             </a>
             <ul>

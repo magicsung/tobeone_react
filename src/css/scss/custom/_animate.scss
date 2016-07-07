@@ -28,10 +28,28 @@
 				100% 0;
 		}
 	}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  @include animation-name(fadeOut);
+}
 .slideOutLeft {
   @include animation-name(slideOutLeft);
 }
 .animated {
   @include animation-duration(.3s);
+  @include animation-fill-mode(both);
+}
+.animated-2s-delay-2s {
+  @include animation-delay(2s);
+  @include animation-duration(2s);
   @include animation-fill-mode(both);
 }

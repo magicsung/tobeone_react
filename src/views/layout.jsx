@@ -6,6 +6,7 @@ import { userLogout }     from '../actions/userLoginActions';
 import { fetchPostList }  from '../actions/fetchPostListActions';
 import { newComment, deleteComment } from '../actions/CommentActions';
 import { uploadVideo }  from '../actions/uploadVideoActions';
+import { fetchUserProfile, editProfile, updateProfile, cleanProfileErrorMessage }  from '../actions/userProfileActions';
 
 class Layout extends Component {
   handleLogoutClick(event) {
@@ -25,6 +26,24 @@ class Layout extends Component {
     let token = this.props.user.currentUser.token;
     this.props.dispatch(uploadVideo(postInfo, token));
   }
+  handleFetchUserProfile(token) {
+    this.props.dispatch(fetchUserProfile(token));
+  }
+  handleUsernameChange(event) {
+    this.props.dispatch(editProfile({username: event.target.value}));
+  }
+  handleDescriptionChange(event) {
+    this.props.dispatch(editProfile({description: event.target.value}));
+  }
+  handleMobileChange(event) {
+    this.props.dispatch(editProfile({mobile: event.target.value}));
+  }
+  handleEditProfileSubmit(profile) {
+    this.props.dispatch(updateProfile(profile));
+  }
+  cleanProfileErrorMessage() {
+    this.props.dispatch(cleanProfileErrorMessage());
+  }
   render() {
     return (
       <div className="h100">
@@ -39,7 +58,13 @@ class Layout extends Component {
              handleFetchPostList: this.handleFetchPostList.bind(this),
              handleCommentSubmit: this.handleCommentSubmit.bind(this),
              handleCommentDeleteClcik: this.handleCommentDeleteClcik.bind(this),
-             handleUploadSubmit: this.handleUploadSubmit.bind(this)
+             handleUploadSubmit: this.handleUploadSubmit.bind(this),
+             handleFetchUserProfile: this.handleFetchUserProfile.bind(this),
+             handleUsernameChange: this.handleUsernameChange.bind(this),
+             handleDescriptionChange: this.handleDescriptionChange.bind(this),
+             handleMobileChange: this.handleMobileChange.bind(this),
+             handleEditProfileSubmit: this.handleEditProfileSubmit.bind(this),
+             cleanProfileErrorMessage: this.cleanProfileErrorMessage.bind(this)
             })}
           </div>
         </div>

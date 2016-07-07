@@ -38,7 +38,7 @@ $bg-black-dark:          #2D2D2D !default;
 
 $brand-primary:          #FF4E50 !default;
 $brand-primary-light:    lighten($brand-primary, 10%);
-$brand-primary-lighter:  #ff4711;
+$brand-primary-lighter:  lighten($brand-primary, 20%);
 $brand-primary-dark:     #E63A3C !default;
 $brand-primary-darker:   darken($brand-primary-dark, 20%) !default;
 $brand-success:          #5cb85c !default;
