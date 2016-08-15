@@ -3,9 +3,10 @@ import { connect }        from 'react-redux';
 import Header             from '../partials/header.jsx';
 import Footer             from '../partials/footer.jsx';
 import { userLogout }     from '../actions/userLoginActions';
+import { handleRefreshToken } from '../actions/refreshTokenActions';
 import { fetchPostList }  from '../actions/fetchPostListActions';
 import { newComment, deleteComment } from '../actions/CommentActions';
-import { uploadVideo }  from '../actions/uploadVideoActions';
+import { uploadVideo }    from '../actions/uploadVideoActions';
 import { fetchUserProfile, editProfile, updateProfile, cleanProfileErrorMessage }  from '../actions/userProfileActions';
 
 class Layout extends Component {
@@ -43,6 +44,16 @@ class Layout extends Component {
   }
   cleanProfileErrorMessage() {
     this.props.dispatch(cleanProfileErrorMessage());
+  }
+  handleRefreshToken() {
+    this.props.dispatch(handleRefreshToken({token: localStorage.token}));
+  }
+  componentWillMount () {
+    if (localStorage.token && localStorage.token.length > 0) {
+      if (this.props.user.currentUser.token == '' && !this.props.user.login.isAuthenticating && !this.props.user.login.isAuthenticated) {
+        this.handleRefreshToken();
+      }
+    }
   }
   render() {
     return (
