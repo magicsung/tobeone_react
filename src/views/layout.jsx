@@ -18,7 +18,9 @@ class Layout extends Component {
     this.props.dispatch(fetchPostList());
   }
   handleLoadMorePost() {
-    this.props.dispatch(handleLoadMorePost())
+    if (!this.props.posts.isFetchingPost) {
+      this.props.dispatch(handleLoadMorePost())
+    }
   }
   handleCommentSubmit(comment) {
     this.props.dispatch(newComment(comment));

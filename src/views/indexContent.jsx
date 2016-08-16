@@ -3,6 +3,27 @@ import SideBar            from '../partials/sidebar.jsx';
 import Wall               from '../partials/wall.jsx';
 
 class IndexContent extends Component {
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind({
+      isFetchingPost: this.props.isFetchingPost,
+      handleLoadMorePost: this.props.handleLoadMorePost.bind(this)
+    }));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  handleScroll(event) {
+    let scrollTop = event.srcElement.body.scrollTop,
+        windowHeight = document.documentElement.clientHeight,
+        contentHeight = document.body.scrollHeight,
+        scrollBottom = contentHeight - (scrollTop + windowHeight)
+    if (scrollBottom < 100) {
+      if (!this.isFetchingPost) {
+        this.handleLoadMorePost();
+      }
+    }
+  }
+
   render() {
     return (
       <div className="row">
@@ -28,7 +49,7 @@ class LoadMore extends Component {
                 onClick={this.props.handleLoadMorePost}
                 disabled={this.props.isFetchingPost}
                 >
-        Load More
+        Loading
         <span className={this.props.isFetchingPost ? 'ml-5' : 'hidden'}>
           <i className="loading-dot">.</i>
           <i className="loading-dot">.</i>

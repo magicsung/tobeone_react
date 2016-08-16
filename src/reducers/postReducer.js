@@ -46,6 +46,10 @@ export function postReducer(state = initialState, action){
           return Object.assign({}, state, {
             isFetchingPost: true
           });
+        case 'LOAD_MORE_POST_FAIL':
+          return Object.assign({}, state, {
+            isFetchingPost: false
+          });
         default:
           return state;
     }

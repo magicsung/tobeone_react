@@ -26,6 +26,7 @@ export function setPostList(data) {
 
 export function handleLoadMorePost() {
   return function(dispatch) {
+    console.log('fetching post...');
     dispatch(loadMorePostRequest());
     $.ajax({
       url:  config.server + '/api_v1/posts/',
@@ -35,7 +36,7 @@ export function handleLoadMorePost() {
         dispatch(appendPostList(data));
       }.bind(this),
       error: function(xhr, status, err) {
-        dispatch(loadMorePostFail(xhr.responseJSON.message));
+        dispatch(loadMorePostFail());
       }.bind(this)
     });
   }
@@ -55,5 +56,7 @@ export function appendPostList(data) {
 }
 
 export function loadMorePostFail(message) {
-  console.log(message);
+  return {
+    type: 'LOAD_MORE_POST_FAIL'
+  }
 }
