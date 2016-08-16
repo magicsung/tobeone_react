@@ -1,5 +1,6 @@
 const initialState = {
-  postList: []
+  postList: [],
+  isFetchingPost: false
 }
 
 export function postReducer(state = initialState, action){
@@ -34,6 +35,16 @@ export function postReducer(state = initialState, action){
           });
           return Object.assign({}, state, {
             postList: removeCommentFromPost
+          });
+        case 'APPEND_POST_LIST':
+          let newPosts = state.postList.concat(action.postList);
+          return Object.assign({}, state, {
+            postList: newPosts,
+            isFetchingPost: false
+          });
+        case 'LOAD_MORE_POST_REQUEST':
+          return Object.assign({}, state, {
+            isFetchingPost: true
           });
         default:
           return state;

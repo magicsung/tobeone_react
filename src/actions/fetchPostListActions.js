@@ -23,3 +23,37 @@ export function setPostList(data) {
     postList: data.posts
   }
 }
+
+export function handleLoadMorePost() {
+  return function(dispatch) {
+    dispatch(loadMorePostRequest());
+    $.ajax({
+      url:  config.server + '/api_v1/posts/',
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+        dispatch(appendPostList(data));
+      }.bind(this),
+      error: function(xhr, status, err) {
+        dispatch(loadMorePostFail(xhr.responseJSON.message));
+      }.bind(this)
+    });
+  }
+}
+
+export function loadMorePostRequest() {
+  return {
+    type: 'LOAD_MORE_POST_REQUEST'
+  }
+}
+
+export function appendPostList(data) {
+  return {
+    type: 'APPEND_POST_LIST',
+    postList: data.posts
+  }
+}
+
+export function loadMorePostFail(message) {
+  console.log(message);
+}

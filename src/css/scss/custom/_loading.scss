@@ -1,0 +1,29 @@
+.loading-dot {
+  font-size: 1.2em;
+  font-style: normal;
+  font-weight: bold;
+  padding-left: 2px;
+  position: relative;
+  @include animation-name(jump);
+  @include animation-duration(.45s);
+  @include animation-fill-mode(both);
+  @include animation-iteration-count(infinite);
+}
+.loading-dot:nth-child(2) {
+  @include animation-delay(.15s);
+}
+.loading-dot:nth-child(3) {
+  @include animation-delay(.3s);
+}
+
+@keyframes jump {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -4px;
+  }
+  100% {
+    top: 0;
+  }
+}

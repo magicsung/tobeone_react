@@ -4,7 +4,7 @@ import Header             from '../partials/header.jsx';
 import Footer             from '../partials/footer.jsx';
 import { userLogout }     from '../actions/userLoginActions';
 import { handleRefreshToken } from '../actions/refreshTokenActions';
-import { fetchPostList }  from '../actions/fetchPostListActions';
+import { fetchPostList, handleLoadMorePost }  from '../actions/fetchPostListActions';
 import { newComment, deleteComment } from '../actions/CommentActions';
 import { uploadVideo }    from '../actions/uploadVideoActions';
 import { fetchUserProfile, editProfile, updateProfile, cleanProfileErrorMessage }  from '../actions/userProfileActions';
@@ -16,6 +16,9 @@ class Layout extends Component {
   }
   handleFetchPostList() {
     this.props.dispatch(fetchPostList());
+  }
+  handleLoadMorePost() {
+    this.props.dispatch(handleLoadMorePost())
   }
   handleCommentSubmit(comment) {
     this.props.dispatch(newComment(comment));
@@ -65,8 +68,10 @@ class Layout extends Component {
           <div className="container-fluid mt-15 mb-15 header-height">
             {this.props.children && React.cloneElement(this.props.children, {
              user: this.props.user,
-             postList: this.props.postList,
+             postList: this.props.posts.postList,
+             isFetchingPost: this.props.posts.isFetchingPost,
              handleFetchPostList: this.handleFetchPostList.bind(this),
+             handleLoadMorePost: this.handleLoadMorePost.bind(this),
              handleCommentSubmit: this.handleCommentSubmit.bind(this),
              handleCommentDeleteClcik: this.handleCommentDeleteClcik.bind(this),
              handleUploadSubmit: this.handleUploadSubmit.bind(this),
@@ -87,7 +92,7 @@ class Layout extends Component {
 
 function mapStateToProps(state) {
   return {
-    postList: state.posts.postList,
+    posts: state.posts,
     user: state.user
   };
 }
