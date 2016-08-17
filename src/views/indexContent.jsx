@@ -4,23 +4,18 @@ import Wall               from '../partials/wall.jsx';
 
 class IndexContent extends Component {
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind({
-      isFetchingPost: this.props.isFetchingPost,
-      handleLoadMorePost: this.props.handleLoadMorePost.bind(this)
-    }));
+    window.addEventListener('scroll', this, false);
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this, false);
   }
-  handleScroll(event) {
+  handleEvent(event) {
     let scrollTop = event.srcElement.body.scrollTop,
         windowHeight = document.documentElement.clientHeight,
         contentHeight = document.body.scrollHeight,
         scrollBottom = contentHeight - (scrollTop + windowHeight)
     if (scrollBottom < 100) {
-      if (!this.isFetchingPost) {
-        this.handleLoadMorePost();
-      }
+      this.props.handleLoadMorePost();
     }
   }
 
