@@ -26,7 +26,6 @@ export function setPostList(data) {
 
 export function handleLoadMorePost() {
   return function(dispatch) {
-    console.log('fetching post...');
     dispatch(loadMorePostRequest());
     $.ajax({
       url:  config.server + '/api_v1/posts/',
